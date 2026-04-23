@@ -39,6 +39,9 @@
     ".next-build/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "mobile",
+    "esp32-device",
+    "checkinqr"
   ]
 }
