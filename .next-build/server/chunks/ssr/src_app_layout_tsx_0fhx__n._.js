@@ -1,0 +1,3 @@
+module.exports=[27572,a=>{"use strict";var b=a.i(7997);a.s(["default",0,function({children:a}){return(0,b.jsx)("html",{lang:"tr",children:(0,b.jsx)("body",{children:a})})},"metadata",0,{title:"CheckInQR - Akıllı Personel Devam Kontrol Sistemi",description:"Fiziksel turnike sistemi olmadan, tamamen dijital, donanım-mobil-web üçgeninde çalışan yeni nesil personel giriş çıkış takip sistemi."}])},50645,a=>{a.n(a.i(27572))}];
+
+//# sourceMappingURL=src_app_layout_tsx_0fhx__n._.js.map

@@ -1,0 +1,17 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/auth/login/route": "/api/auth/login",
+  "/api/device/qr/sync/route": "/api/device/qr/sync",
+  "/api/mobile/attendance/route": "/api/mobile/attendance",
+  "/api/mobile/auth/login/route": "/api/mobile/auth/login",
+  "/dashboard/companies/[id]/page": "/dashboard/companies/[id]",
+  "/dashboard/companies/new/page": "/dashboard/companies/new",
+  "/dashboard/companies/page": "/dashboard/companies",
+  "/dashboard/devices/page": "/dashboard/devices",
+  "/dashboard/employees/page": "/dashboard/employees",
+  "/dashboard/page": "/dashboard",
+  "/favicon.ico/route": "/favicon.ico",
+  "/login/page": "/login",
+  "/page": "/"
+}
