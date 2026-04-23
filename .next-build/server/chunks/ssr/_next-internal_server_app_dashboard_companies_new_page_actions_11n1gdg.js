@@ -1,3 +1,0 @@
-module.exports=[28076,a=>{"use strict";var b=a.i(75933);a.s([],1081),a.i(1081),a.s(["0080d138235d8d1670cc16e921947bb70703d4033f",()=>b.logoutAction,"402c85ac8833396e01e79751b2151d8072a761bef9",()=>b.createDeviceAction,"4047a66f47e56f40a27f48dcd830dc77df40dbfad4",()=>b.createCompanyAction,"40520c5a6c1040ba75218a786c8154db6615a8e1e3",()=>b.createEmployeeAction,"4095350004aee2bc3db44d7eecb84ae2fcfc3998c6",()=>b.updateCompanyAction],28076)}];
-
-//# sourceMappingURL=_next-internal_server_app_dashboard_companies_new_page_actions_11n1gdg.js.map

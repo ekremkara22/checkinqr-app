@@ -15,6 +15,7 @@
 
 # next.js
 /.next/
+/.next-build/
 /out/
 
 # production
@@ -45,3 +46,10 @@ next-env.d.ts
 # local release artifacts
 *.apk
 *.zip
+/checkinqr/
+
+# mobile local artifacts
+mobile/android/.kotlin/
+mobile/*.log
+mobile/*.png
+mobile/android/app/debug.keystore
