@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "CheckInQR - Akıllı Personel Devam Kontrol Sistemi",
+  title: "Flodeka CheckInQR | QR Kodlu Personel Takip ve PDKS Sistemi",
   description:
-    "Fiziksel turnike sistemi olmadan, tamamen dijital, donanım-mobil-web üçgeninde çalışan yeni nesil personel giriş çıkış takip sistemi.",
+    "Flodeka CheckInQR ile personel giriş çıkışlarını QR kod, mobil uygulama ve GPS doğrulama ile takip edin. Turnikesiz, hızlı kurulumlu ve bulut tabanlı PDKS çözümü.",
 };
 
 export default function RootLayout({
