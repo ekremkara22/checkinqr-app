@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { motion, type Variants } from "framer-motion";
 import {
   QrCode,
@@ -7,11 +9,25 @@ import {
   LayoutDashboard,
   CheckCircle2,
   ArrowRight,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [isDemoSubmitted, setIsDemoSubmitted] = useState(false);
+
+  const openDemoModal = () => {
+    setIsDemoSubmitted(false);
+    setIsDemoModalOpen(true);
+  };
+
+  const handleDemoSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsDemoSubmitted(true);
+  };
+
   const fadeUp: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -48,7 +64,7 @@ export default function Home() {
               className="btn-primary"
               style={{ padding: "0.5rem 1.5rem", fontSize: "0.9rem" }}
             >
-              Panel Giriş
+              Panel Girişi
             </Link>
           </div>
         </div>
@@ -59,18 +75,17 @@ export default function Home() {
         <div className="container">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.h1 variants={fadeUp} className={styles.heroTitle}>
-              Turnike Yok, Maliyet Yok. <br />
-              <span className="text-gradient">Yeni Nesil Yoklama</span> Sistemi.
+              Turnike maliyetine son verin, personel giriş-çıkışlarını{" "}
+              <span className="text-gradient">QR ile dijital yönetin</span>
             </motion.h1>
             <motion.p variants={fadeUp} className={styles.heroSubtitle}>
-              Sadece bir doğrulama ekranı ve akıllı telefonlarla, işletmenizin
-              personel devam kontrolünü tamamen dijitalleştirin. Bulut tabanlı
-              panel üzerinden anlık raporlar alın.
+              Kurulum gerektirmeyen, mobil QR ve GPS doğrulamalı personel takip
+              sistemiyle giriş-çıkışları güvenli, hızlı ve merkezi şekilde yönetin.
             </motion.p>
             <motion.div variants={fadeUp} className={styles.heroBtns}>
-              <Link href="#paketler" className="btn-primary">
-                Hemen Başlayın
-              </Link>
+              <button className="btn-primary" onClick={openDemoModal}>
+                Demo Talep Et
+              </button>
               <Link href="#ozellikler" className="btn-outline">
                 Daha Fazla Bilgi
               </Link>
@@ -104,8 +119,8 @@ export default function Home() {
               <h3>Dinamik Karekod Cihazı</h3>
               <p>
                 Firmanızın girişinde yer alan tablet veya özel cihaz, her 10
-                saniyede bir değişen güvenli ve dinamik QR kodlar üretir.
-                Sistemi sadece WiFi&apos;a bağlamak yeterlidir.
+                saniyede bir değişen güvenli ve dinamik QR kodlar üretir. Sistemi
+                sadece WiFi&apos;a bağlamak yeterlidir.
               </p>
             </motion.div>
 
@@ -115,9 +130,9 @@ export default function Home() {
               </div>
               <h3>Personel Mobil Uygulaması</h3>
               <p>
-                Personeliniz kendi akıllı telefonu ile girişteki karekodu
-                okutur. Konum doğrulaması ile sahte girişler engellenir ve işlem
-                saniyeler içinde tamamlanır.
+                Personeliniz kendi akıllı telefonu ile girişteki karekodu okutur.
+                Konum doğrulaması ile sahte girişler engellenir ve işlem saniyeler
+                içinde tamamlanır.
               </p>
             </motion.div>
 
@@ -143,7 +158,7 @@ export default function Home() {
               Esnek <span className="text-gradient">Paketler</span>
             </h2>
             <p className={styles.sectionSubtitle}>
-              İşletmenizin büyüklüğüne en uygun paketi seçin.
+              İşletmenizin büyüklüğüne en uygun çözümü birlikte belirleyelim.
             </p>
           </div>
 
@@ -173,8 +188,12 @@ export default function Home() {
                   <CheckCircle2 size={18} /> E-Posta Desteği
                 </li>
               </ul>
-              <button className="btn-outline" style={{ width: "100%" }}>
-                Satın Al
+              <button
+                className="btn-outline"
+                style={{ width: "100%" }}
+                onClick={openDemoModal}
+              >
+                Demo Talep Et
               </button>
             </motion.div>
 
@@ -204,8 +223,12 @@ export default function Home() {
                   <CheckCircle2 size={18} /> 7/24 Öncelikli Destek
                 </li>
               </ul>
-              <button className="btn-primary" style={{ width: "100%" }}>
-                Satın Al{" "}
+              <button
+                className="btn-primary"
+                style={{ width: "100%" }}
+                onClick={openDemoModal}
+              >
+                Demo Talep Et{" "}
                 <ArrowRight size={16} style={{ display: "inline", marginLeft: "5px" }} />
               </button>
             </motion.div>
@@ -218,6 +241,70 @@ export default function Home() {
           <p>© {new Date().getFullYear()} CheckInQR PDKS. Tüm Hakları Saklıdır.</p>
         </div>
       </footer>
+
+      {isDemoModalOpen && (
+        <div
+          className={styles.modalBackdrop}
+          role="presentation"
+          onClick={() => setIsDemoModalOpen(false)}
+        >
+          <motion.div
+            className={`glass-panel ${styles.demoModal}`}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="demo-modal-title"
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className={styles.modalClose}
+              type="button"
+              aria-label="Modalı kapat"
+              onClick={() => setIsDemoModalOpen(false)}
+            >
+              <X size={20} />
+            </button>
+            <div className={styles.modalHeader}>
+              <p className={styles.modalEyebrow}>CheckInQR Demo</p>
+              <h2 id="demo-modal-title">Demo Talep Et</h2>
+              <p>
+                Bilgilerinizi bırakın, ekibimiz işletmeniz için en uygun QR personel
+                takip kurulumunu anlatsın.
+              </p>
+            </div>
+            {isDemoSubmitted ? (
+              <div className={styles.successMessage} role="status">
+                <CheckCircle2 size={28} />
+                <h3>Demo talebiniz alındı</h3>
+                <p>En kısa sürede sizinle iletişime geçeceğiz.</p>
+              </div>
+            ) : (
+              <form className={styles.demoForm} onSubmit={handleDemoSubmit}>
+                <label>
+                  Ad Soyad
+                  <input name="fullName" type="text" autoComplete="name" required />
+                </label>
+                <label>
+                  Firma Adı
+                  <input name="company" type="text" autoComplete="organization" required />
+                </label>
+                <label>
+                  Telefon
+                  <input name="phone" type="tel" autoComplete="tel" required />
+                </label>
+                <label>
+                  E-posta
+                  <input name="email" type="email" autoComplete="email" required />
+                </label>
+                <button className="btn-primary" type="submit">
+                  Gönder
+                </button>
+              </form>
+            )}
+          </motion.div>
+        </div>
+      )}
     </main>
   );
 }
