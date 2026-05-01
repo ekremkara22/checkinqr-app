@@ -45,16 +45,16 @@ export function DashboardShell({ children, user }: DashboardShellProps) {
   );
 
   const items = [
-    { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { href: "/dashboard", label: "Operasyon Özeti", icon: LayoutDashboard },
     ...(user.role === "SUPERADMIN"
       ? [{ href: "/dashboard/companies", label: "Firmalar", icon: Building2 }]
       : [
-          { href: "/dashboard/employees", label: "Personeller", icon: Users },
-          { href: "/dashboard/devices", label: "Cihazlar", icon: MonitorSmartphone },
+          { href: "/dashboard/employees", label: "Personel Kayıtları", icon: Users },
+          { href: "/dashboard/devices", label: "QR Cihazları", icon: MonitorSmartphone },
         ]),
   ];
   const definitionItems = [
-    { href: "/dashboard/settings/company-categories", label: "Firma Kategori", icon: Tags },
+    { href: "/dashboard/settings/company-categories", label: "Firma Kategorileri", icon: Tags },
   ];
 
   return (
@@ -62,14 +62,14 @@ export function DashboardShell({ children, user }: DashboardShellProps) {
       <aside className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ""}`}>
         <div className={styles.brand}>
           <div>
-            <p className={styles.brandEyebrow}>CheckInQR</p>
-            <h2 className={styles.brandTitle}>Yonetim Paneli</h2>
+            <p className={styles.brandEyebrow}>Flodeka CheckInQR</p>
+            <h2 className={styles.brandTitle}>Veri Yönetim Paneli</h2>
           </div>
           <button
             type="button"
             className={styles.mobileClose}
             onClick={() => setIsOpen(false)}
-            aria-label="Menuyu kapat"
+            aria-label="Menüyü kapat"
           >
             <X size={18} />
           </button>
@@ -109,7 +109,7 @@ export function DashboardShell({ children, user }: DashboardShellProps) {
                 onClick={() => setDefinitionsOpen((value) => !value)}
               >
                 <SlidersHorizontal size={18} />
-                <span>Sabit Tanimlar</span>
+                <span>Sabit Tanımlar</span>
                 <ChevronDown
                   size={16}
                   className={`${styles.navChevron} ${definitionsOpen ? styles.navChevronOpen : ""}`}
@@ -142,8 +142,8 @@ export function DashboardShell({ children, user }: DashboardShellProps) {
 
         <form action={logoutAction} className={styles.logoutForm}>
           <SubmitButton
-            idleLabel="Cikis Yap"
-            pendingLabel="Cikis Yapiliyor..."
+            idleLabel="Çıkış Yap"
+            pendingLabel="Çıkış Yapılıyor..."
             className={styles.logoutButton}
           />
           <LogOut size={16} className={styles.logoutIcon} />
@@ -161,7 +161,7 @@ export function DashboardShell({ children, user }: DashboardShellProps) {
             type="button"
             className={styles.menuButton}
             onClick={() => setIsOpen(true)}
-            aria-label="Menuyu ac"
+            aria-label="Menüyü aç"
           >
             <Menu size={18} />
           </button>

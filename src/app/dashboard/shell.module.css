@@ -1,25 +1,22 @@
 .shell {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 290px minmax(0, 1fr);
-  background:
-    radial-gradient(circle at top left, rgba(6, 182, 212, 0.12), transparent 24%),
-    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.12), transparent 22%),
-    #07111f;
+  grid-template-columns: 264px minmax(0, 1fr);
+  background: #f4f7fb;
+  color: #0f172a;
 }
 
 .sidebar {
   position: sticky;
   top: 0;
   height: 100vh;
-  padding: 1.5rem 1.1rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(4, 10, 18, 0.78);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  padding: 1rem 0.85rem;
+  border-right: 1px solid #dbe3ef;
+  background: #0f172a;
+  color: #e5edf7;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.9rem;
   z-index: 20;
 }
 
@@ -28,79 +25,86 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.25rem 0.2rem 0.75rem;
+  padding: 0.35rem 0.45rem 0.9rem;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.12);
 }
 
 .brandEyebrow,
 .mobileEyebrow {
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent-cyan);
+  color: #38bdf8;
 }
 
 .brandTitle,
 .mobileTitle {
-  margin-top: 0.35rem;
-  font-size: 1.25rem;
-  font-weight: 700;
+  margin-top: 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 750;
 }
 
 .profileCard {
-  padding: 1rem;
-  border-radius: 20px;
+  padding: 0.9rem;
+  border: 1px solid rgba(226, 232, 240, 0.12);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: none;
 }
 
 .profileName {
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 700;
+  color: #ffffff;
 }
 
 .profileMeta {
-  margin-top: 0.35rem;
-  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  color: #94a3b8;
+  font-size: 0.86rem;
 }
 
 .nav {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.3rem;
 }
 
 .navItem {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   width: 100%;
-  padding: 0.95rem 1rem;
-  border: none;
-  border-radius: 16px;
+  min-height: 42px;
+  padding: 0.68rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
   background: transparent;
-  color: var(--text-secondary);
+  color: #cbd5e1;
   font: inherit;
+  font-size: 0.92rem;
   text-align: left;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
 }
 
 .navItem:hover {
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text-primary);
-  transform: translateX(2px);
+  background: rgba(148, 163, 184, 0.1);
+  color: #ffffff;
 }
 
 .navItemActive {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.18), rgba(59, 130, 246, 0.18));
-  color: var(--text-primary);
-  border: 1px solid rgba(6, 182, 212, 0.2);
+  background: #0ea5e9;
+  color: #ffffff;
+  border-color: #38bdf8;
 }
 
 .navGroup {
   display: grid;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 
 .navChevron {
   margin-left: auto;
-  transition: transform 0.2s ease;
+  transition: transform 0.16s ease;
 }
 
 .navChevronOpen {
@@ -109,26 +113,28 @@
 
 .subNav {
   display: grid;
-  gap: 0.35rem;
-  padding-left: 0.65rem;
+  gap: 0.25rem;
+  padding: 0.2rem 0 0.2rem 0.65rem;
 }
 
 .subNavItem {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  padding: 0.76rem 0.9rem;
-  border-radius: 14px;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  gap: 0.55rem;
+  min-height: 38px;
+  padding: 0.58rem 0.7rem;
+  border-radius: 6px;
+  color: #94a3b8;
+  background: transparent;
+  border: 1px solid transparent;
+  font-size: 0.88rem;
 }
 
 .subNavItem:hover,
 .subNavItemActive {
-  color: var(--text-primary);
-  background: rgba(6, 182, 212, 0.1);
-  border-color: rgba(6, 182, 212, 0.18);
+  color: #ffffff;
+  background: rgba(14, 165, 233, 0.14);
+  border-color: rgba(56, 189, 248, 0.22);
 }
 
 .logoutForm {
@@ -141,20 +147,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem 1rem;
-  border-radius: 16px;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
+  min-height: 42px;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  color: #e5edf7;
+  border: 1px solid rgba(226, 232, 240, 0.14);
+  background: rgba(148, 163, 184, 0.08);
 }
 
 .logoutIcon {
   position: absolute;
-  left: 1rem;
+  left: 0.8rem;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--text-secondary);
+  color: #94a3b8;
 }
 
 .contentArea {
@@ -162,27 +169,27 @@
 }
 
 .content {
-  padding: 1.5rem;
+  padding: 1.15rem;
 }
 
 .mobileHeader {
   display: none;
   align-items: center;
   gap: 0.85rem;
-  padding: 1rem 1rem 0;
+  padding: 0.85rem 1rem 0;
 }
 
 .menuButton,
 .mobileClose {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.35rem;
+  height: 2.35rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 14px;
-  color: white;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
 .mobileClose {
@@ -213,7 +220,7 @@
   .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(2, 6, 12, 0.62);
+    background: rgba(15, 23, 42, 0.52);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.24s ease;

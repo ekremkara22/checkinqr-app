@@ -13,12 +13,12 @@ import { requireSessionUser } from "@/lib/session";
 import styles from "./page.module.css";
 
 const attendanceLabels = {
-  ENTRY: "Giris",
-  EXIT: "Cikis",
-  BREAK_START: "Mola Giris",
-  BREAK_END: "Mola Cikis",
-  MEAL_START: "Yemek Giris",
-  MEAL_END: "Yemek Cikis",
+  ENTRY: "Giriş",
+  EXIT: "Çıkış",
+  BREAK_START: "Mola Giriş",
+  BREAK_END: "Mola Çıkış",
+  MEAL_START: "Yemek Giriş",
+  MEAL_END: "Yemek Çıkış",
 } as const;
 
 function getRoleLabel(role: string) {
@@ -181,42 +181,44 @@ export default async function DashboardPage() {
   const summaryCards = isSuperadmin
     ? [
         { label: "Toplam Firma", value: companyCount, icon: Building2 },
-        { label: "Firma Yoneticisi", value: companyAdminCount, icon: ShieldCheck },
+        { label: "Firma Yöneticisi", value: companyAdminCount, icon: ShieldCheck },
         { label: "Toplam Personel", value: employeeCount, icon: Users },
         { label: "Toplam Cihaz", value: deviceCount, icon: MonitorSmartphone },
       ]
     : [
         { label: "Firma", value: user.company?.name ?? "-", icon: Building2 },
-        { label: "Kayitli Personel", value: employeeCount, icon: Users },
-        { label: "Cihaz", value: deviceCount, icon: MonitorSmartphone },
-        { label: "Bugun Giris", value: todayEntryCount, icon: DoorOpen },
+        { label: "Kayıtlı Personel", value: employeeCount, icon: Users },
+        { label: "QR Cihazı", value: deviceCount, icon: MonitorSmartphone },
+        { label: "Bugün Giriş", value: todayEntryCount, icon: DoorOpen },
       ];
 
   const reportCards = [
-    { label: "Giris", value: todayEntryCount, icon: DoorOpen },
-    { label: "Cikis", value: todayExitCount, icon: DoorClosed },
-    { label: "Mola Giris", value: todayBreakStartCount, icon: Coffee },
-    { label: "Mola Cikis", value: todayBreakEndCount, icon: Coffee },
-    { label: "Yemek Giris", value: todayMealStartCount, icon: Soup },
-    { label: "Yemek Cikis", value: todayMealEndCount, icon: Soup },
+    { label: "Giriş", value: todayEntryCount, icon: DoorOpen },
+    { label: "Çıkış", value: todayExitCount, icon: DoorClosed },
+    { label: "Mola Giriş", value: todayBreakStartCount, icon: Coffee },
+    { label: "Mola Çıkış", value: todayBreakEndCount, icon: Coffee },
+    { label: "Yemek Giriş", value: todayMealStartCount, icon: Soup },
+    { label: "Yemek Çıkış", value: todayMealEndCount, icon: Soup },
   ];
 
   return (
     <div className={styles.page}>
       <section className={`glass-panel ${styles.heroCard}`}>
         <div>
-          <p className={styles.eyebrow}>QR PDKS Dashboard</p>
-          <h1 className={styles.title}>Hos geldin, {getUserFullName(user)}</h1>
+          <p className={styles.eyebrow}>
+            {isSuperadmin ? "Admin veri merkezi" : "Firma operasyon paneli"}
+          </p>
+          <h1 className={styles.title}>{getUserFullName(user)}</h1>
           <p className={styles.subtitle}>
             {isSuperadmin
-              ? "Panel ana sayfasinda tum firmalarin son durumunu gorebilir, detayli islemleri sol menuden yonetebilirsin."
-              : "Panel ana sayfasinda firmanin hareket ozetini gorebilir, detayli yonetim ekranlarina sol menuden gecis yapabilirsin."}
+              ? "Tüm firmalar, yöneticiler, cihazlar ve personel hareketleri için yoğun veri izleme ve raporlama ekranı."
+              : "Firmanızın personel giriş-çıkış kayıtları, QR cihazları, GPS doğrulama durumu ve günlük rapor akışı."}
           </p>
         </div>
 
         <div className={styles.heroMeta}>
           <div className={styles.rolePill}>{getRoleLabel(user.role)}</div>
-          <div className={styles.helperText}>Bugunluk operasyon ozeti anlik olarak listelenir.</div>
+          <div className={styles.helperText}>Canlı kayıt, tablo ve rapor öncelikli panel düzeni.</div>
         </div>
       </section>
 
@@ -241,10 +243,10 @@ export default async function DashboardPage() {
             <div className={styles.sectionHeader}>
               <div>
                 <p className={styles.sectionEyebrow}>
-                  {isSuperadmin ? "Firma Genel Gorunum" : "Firma Ozet Kartlari"}
+                  {isSuperadmin ? "Firma genel görünüm" : "Firma kapsamı"}
                 </p>
                 <h2 className={styles.sectionTitle}>
-                  {isSuperadmin ? "Musteri Firmalar" : "Firma Detaylari"}
+                  {isSuperadmin ? "Müşteri Firmalar" : "Firma Detayları"}
                 </h2>
               </div>
             </div>
@@ -258,18 +260,18 @@ export default async function DashboardPage() {
                       <p className={styles.infoCardMeta}>
                         {company.users[0]
                           ? getUserFullName(company.users[0])
-                          : "Firma admini tanimlanmadi"}
+                          : "Firma admini tanımlanmadı"}
                       </p>
                     </div>
                     <div className={styles.countPill}>{company._count.employees} personel</div>
                   </div>
 
                   <p className={styles.infoCardBody}>
-                    {company.address ?? "Adres bilgisi henuz girilmedi."}
+                    {company.address ?? "Adres bilgisi henüz girilmedi."}
                   </p>
 
                   <div className={styles.infoCardFooter}>
-                    <span>Iletisim: {company.contactEmail ?? company.contactPhone ?? "-"}</span>
+                    <span>İletişim: {company.contactEmail ?? company.contactPhone ?? "-"}</span>
                     <span>{company._count.devices} cihaz</span>
                   </div>
                 </article>
@@ -281,10 +283,10 @@ export default async function DashboardPage() {
             <div className={styles.sectionHeader}>
               <div>
                 <p className={styles.sectionEyebrow}>
-                  {isSuperadmin ? "Yeni Kayitlar" : "Personel Takibi"}
+                  {isSuperadmin ? "Yeni kayıtlar" : "Personel takibi"}
                 </p>
                 <h2 className={styles.sectionTitle}>
-                  {isSuperadmin ? "Son Eklenen Personeller" : "Kayitli Personeller"}
+                  {isSuperadmin ? "Son Eklenen Personeller" : "Kayıtlı Personeller"}
                 </h2>
               </div>
             </div>
@@ -296,14 +298,14 @@ export default async function DashboardPage() {
                     <th>Personel</th>
                     <th>Firma</th>
                     <th>Departman</th>
-                    <th>Konum Alani</th>
+                    <th>Konum Alanı</th>
                   </tr>
                 </thead>
                 <tbody>
                   {scopedEmployees.length === 0 ? (
                     <tr>
                       <td colSpan={4} className={styles.emptyCell}>
-                        Henuz kayitli personel yok.
+                        Henüz kayıtlı personel yok.
                       </td>
                     </tr>
                   ) : (
@@ -333,8 +335,8 @@ export default async function DashboardPage() {
           <section className={`glass-panel ${styles.sectionCard}`}>
             <div className={styles.sectionHeader}>
               <div>
-                <p className={styles.sectionEyebrow}>PDKS Ozet</p>
-                <h2 className={styles.sectionTitle}>Bugunku Hareket Tipleri</h2>
+                <p className={styles.sectionEyebrow}>PDKS özet</p>
+                <h2 className={styles.sectionTitle}>Bugünkü Hareket Tipleri</h2>
               </div>
             </div>
 
@@ -359,14 +361,14 @@ export default async function DashboardPage() {
           <section className={`glass-panel ${styles.sectionCard}`}>
             <div className={styles.sectionHeader}>
               <div>
-                <p className={styles.sectionEyebrow}>QR Cihazlar</p>
+                <p className={styles.sectionEyebrow}>QR cihazlar</p>
                 <h2 className={styles.sectionTitle}>Aktif UUID Durumu</h2>
               </div>
             </div>
 
             <div className={styles.logList}>
               {companyDevices.length === 0 ? (
-                <p className={styles.emptyState}>Henuz kayitli cihaz yok.</p>
+                <p className={styles.emptyState}>Henüz kayıtlı cihaz yok.</p>
               ) : (
                 companyDevices.map((device) => (
                   <article key={device.id} className={styles.logItem}>
@@ -378,8 +380,8 @@ export default async function DashboardPage() {
                       <p>{device.activeQrToken ?? "UUID bekleniyor"}</p>
                       <p>
                         {device.qrExpiresAt
-                          ? `Bitis: ${formatDate(device.qrExpiresAt)}`
-                          : "Sure yok"}
+                          ? `Bitiş: ${formatDate(device.qrExpiresAt)}`
+                          : "Süre yok"}
                       </p>
                     </div>
                   </article>
@@ -399,8 +401,8 @@ export default async function DashboardPage() {
             <div className={styles.logList}>
               {recentLogs.length === 0 ? (
                 <p className={styles.emptyState}>
-                  Henuz kayitli hareket yok. Giris ve cikis hareketlerinde QR ve konum
-                  teyitleri burada gorunecek.
+                  Henüz kayıtlı hareket yok. Giriş ve çıkış hareketlerinde QR ve konum
+                  teyitleri burada görünecek.
                 </p>
               ) : (
                 recentLogs.map((log) => (
@@ -414,7 +416,7 @@ export default async function DashboardPage() {
                       </p>
                       {log.type === "ENTRY" || log.type === "EXIT" ? (
                         <p className={styles.mutedRow}>
-                          QR: {log.qrMatched ? "Dogrulandi" : "Yok"} | Konum:{" "}
+                          QR: {log.qrMatched ? "Doğrulandı" : "Yok"} | Konum:{" "}
                           {log.locationValid ? "Uygun" : "Yok"}
                         </p>
                       ) : null}
